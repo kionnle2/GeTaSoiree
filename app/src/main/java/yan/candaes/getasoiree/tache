@@ -1,0 +1,30 @@
+{
+    "request": "creerCompte",
+    "success": false,
+    "response": "Probleme de requete sql"
+}
+{
+    "request": "creerCompte",
+    "success": true,
+    "response": true
+}
+
+
+json String to java obj
+try {
+    // JSON string
+    String json = "{\"title\":\"Thinking in Java\",\"isbn\":\"978-0131872486\"" +
+            ",\"year\":1998,\"authors\":[\"Bruce Eckel\"]}";
+
+    // create object mapper instance
+    ObjectMapper mapper = new ObjectMapper();
+
+    // convert a JSON string to a Book object
+    Book book = mapper.readValue(json, Book.class);
+
+    // print book
+    System.out.println(book);
+
+} catch (Exception ex) {
+    ex.printStackTrace();
+}
