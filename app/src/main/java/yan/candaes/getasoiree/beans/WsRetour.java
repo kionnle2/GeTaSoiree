@@ -18,11 +18,8 @@ public class WsRetour {
         this.response = response;
     }
 
-    public boolean isresponseOk() {
-        if ((boolean) response) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isSuccess() {
+
+            return this.success;
     }
 }

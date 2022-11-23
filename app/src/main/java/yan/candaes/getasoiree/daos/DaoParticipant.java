@@ -35,23 +35,19 @@ public class DaoParticipant {
         WSConnexionHTTPS ws = new WSConnexionHTTPS() {
             @Override
             public void onPostExecute(String s) {
-                d.whenWSInscriptionIsTerminated(s);
+                WsRetour wsRetour = null;
+                try {
+                    wsRetour = mapper.readValue(s, WsRetour.class);
+                } catch (
+                        JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+                d.WSInscriptionIsTerminated(wsRetour);
             }
         };
         ws.execute(re);
     }
 
-
-//    public void TraiterRetourInputParticipant(String s, Delegate d) {
-//
-//        WsRetour wsRetour = null;
-//        try {
-//            wsRetour = mapper.readValue(s, WsRetour.class);
-//        } catch (
-//                JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
 
 }

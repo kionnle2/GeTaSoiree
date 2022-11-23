@@ -34,7 +34,7 @@ public class InscriptionActivity extends AppCompatActivity {
                 );
                 DaoParticipant.getInstance().createAccount(request,new Delegate() {
                     @Override
-                    public void whenWSInscriptionIsTerminated(Object result) {
+                    public void WSInscriptionIsTerminated(Object result) {
                         // result boolean, reussi ou non
                         Log.d("Reussie ou non",request);
                         if((Boolean) result) Toast.makeText(getApplicationContext(), "Inscription réussie", Toast.LENGTH_SHORT).show();
