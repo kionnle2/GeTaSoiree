@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import yan.candaes.getasoiree.R;
-
+import yan.candaes.getasoiree.daos.DaoParticipant;
+import yan.candaes.getasoiree.daos.Delegate;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,8 +22,22 @@ public class MainActivity extends AppCompatActivity {
 
         ((Button) findViewById(R.id.mainBtnLogin)).setOnClickListener(view ->{
 
-            Toast.makeText(getApplicationContext(), "Connection Reussie", Toast.LENGTH_SHORT).show();
+            String request = ("requete=connexion" +
+                    "&login="+ ((TextView) findViewById(R.id.mainTxtLogin)).getText().toString()+
+                    "&password="+ ((TextView) findViewById(R.id.mainTxtPass)).getText().toString());
 
+            DaoParticipant.getInstance().ConnexionAccount(request, new Delegate() {
+                @Override
+                public void WSRequestIsTerminated(Object result) {
+                    // result boolean, reussi ou non
+
+                    if ((boolean)result) {
+                        Toast.makeText(getApplicationContext(), " réussie", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(getApplicationContext(), "connexion échoué", Toast.LENGTH_SHORT).show();
+                }
+
+            });
         });
 
 
@@ -32,4 +49,4 @@ public class MainActivity extends AppCompatActivity {
         );
 
     }
-}
+}//            Toast.makeText(getApplicationContext(), "Connection Reussie", Toast.LENGTH_SHORT).show();

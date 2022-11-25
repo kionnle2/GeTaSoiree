@@ -4,13 +4,7 @@ public class WsRetour {
 
     String request;
     boolean success;
-    Object response;
-
-    public WsRetour(String request, boolean success, String response) {
-        this.request = request;
-        this.success = success;
-        this.response = response;
-    }
+    boolean response;
 
     public WsRetour(String request, boolean success, boolean response) {
         this.request = request;
@@ -19,7 +13,6 @@ public class WsRetour {
     }
 
     public boolean isSuccess() {
-
             return this.success;
     }
 }

@@ -1,10 +1,14 @@
 package yan.candaes.getasoiree.daos;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,25 +35,43 @@ public class DaoParticipant {
         participants = new ArrayList<>();
     }
 
-    public void createAccount(String re, Delegate d) {
+    public void createAccount(String request, Delegate d) {
         WSConnexionHTTPS ws = new WSConnexionHTTPS() {
             @Override
             public void onPostExecute(String s) {
-                WsRetour wsRetour = null;
+                boolean wsRetour = false;
                 try {
-                    wsRetour = mapper.readValue(s, WsRetour.class);
-                } catch (
-                        JsonProcessingException e) {
+                    JSONObject jo = new JSONObject(s);
+                    wsRetour = jo.getBoolean("success");
+
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                d.WSInscriptionIsTerminated(wsRetour);
+                d.WSRequestIsTerminated(wsRetour);
             }
         };
-        ws.execute(re);
+        ws.execute(request);
     }
 
 
+    public void ConnexionAccount(String request, Delegate d) {
+        WSConnexionHTTPS ws = new WSConnexionHTTPS() {
+            @Override
+            public void onPostExecute(String s) {
+                boolean wsRetour = false;
+                try {
+                    JSONObject jo = new JSONObject(s);
+                    wsRetour = jo.getBoolean("success");
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                d.WSRequestIsTerminated(wsRetour);
+            }
+        };
+        ws.execute(request);
+
+    }
 }
 
 
