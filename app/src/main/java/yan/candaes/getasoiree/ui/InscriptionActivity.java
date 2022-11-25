@@ -38,6 +38,7 @@ public class InscriptionActivity extends AppCompatActivity {
                         if ((boolean) result) {
                             Toast.makeText(getApplicationContext(), "Inscription réussie", Toast.LENGTH_SHORT).show();
                             finish();
+
                         } else
                             Toast.makeText(getApplicationContext(), "Inscription échoué", Toast.LENGTH_SHORT).show();
                     }
