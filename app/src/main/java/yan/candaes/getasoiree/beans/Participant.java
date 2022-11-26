@@ -46,4 +46,5 @@ public class Participant {
     public String getMail() {
         return mail;
     }
+
 }

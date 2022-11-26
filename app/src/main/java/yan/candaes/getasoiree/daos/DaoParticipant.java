@@ -5,15 +5,22 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.DataInput;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import yan.candaes.getasoiree.beans.Participant;
+import yan.candaes.getasoiree.beans.Soiree;
 import yan.candaes.getasoiree.beans.WsRetour;
 import yan.candaes.getasoiree.net.WSConnexionHTTPS;
 
@@ -21,7 +28,7 @@ import yan.candaes.getasoiree.net.WSConnexionHTTPS;
 public class DaoParticipant {
 
     private static DaoParticipant instance = null;
-    private final List<Participant> participants;
+    private List<Soiree> soirees;
     private final ObjectMapper mapper = new ObjectMapper();
 
     public static DaoParticipant getInstance() {
@@ -31,11 +38,15 @@ public class DaoParticipant {
         return instance;
     }
 
-    private DaoParticipant() {
-        participants = new ArrayList<>();
+    public List<Soiree> getLocalSoirees() {
+        return soirees;
     }
 
-    public void createAccount(String request, Delegate d) {
+    private DaoParticipant() {
+        soirees = new ArrayList<>();
+    }
+
+    public void createAccount(String request, Delegate delegate) {
         WSConnexionHTTPS ws = new WSConnexionHTTPS() {
             @Override
             public void onPostExecute(String s) {
@@ -47,14 +58,14 @@ public class DaoParticipant {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                d.WSRequestIsTerminated(wsRetour);
+                delegate.WSRequestIsTerminated(wsRetour);
             }
         };
         ws.execute(request);
     }
 
 
-    public void ConnexionAccount(String request, Delegate d) {
+    public void ConnexionAccount(String request, Delegate delegate) {
         WSConnexionHTTPS ws = new WSConnexionHTTPS() {
             @Override
             public void onPostExecute(String s) {
@@ -66,14 +77,61 @@ public class DaoParticipant {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                d.WSRequestIsTerminated(wsRetour);
+                delegate.WSRequestIsTerminated(wsRetour);
+            }
+        };
+        ws.execute(request);
+
+    }
+
+    public void getSoiree(String request, Delegate delegate) {
+
+        WSConnexionHTTPS ws = new WSConnexionHTTPS() {
+            @Override
+            public void onPostExecute(String s) {
+                boolean wsRetour = false;
+
+                JSONObject jo;
+                JSONArray ja = null;
+
+                try {
+                    jo = new JSONObject(s);
+                    ja = jo.getJSONArray("response");
+                    Log.d("GETGETGET", ja.toString(4));
+                    //  soirees =  mapper.readValue(ja.toString(),  new TypeReference<List<Soiree>>(){});
+                    //  soirees =  mapper.readValue(ja.toString(), List<Soiree>.class);
+                    for (int i = 0; i < ja.length(); i++) {
+                        Log.d("GETGETGET", String.valueOf(ja.getJSONObject(i)));
+                        //soirees.add(mapper.readValue((DataInput) ja.getJSONObject(i), Soiree.class));
+                        jo = ja.getJSONObject(i);
+                        soirees.add(
+                                new Soiree(
+                                        jo.getString("id"),
+                                        jo.getString("libelleCourt"),
+                                        jo.getString("descriptif"),
+                                        jo.getString("dateDebut"),
+                                        jo.getString("heureDebut"),
+                                        jo.getString("adresse"),
+                                        jo.getString("latitude"),
+                                        jo.getString("longitude"),
+                                        jo.getString("login")
+
+                                )
+                        );
+
+                    }
+                    jo = new JSONObject(s);
+                    wsRetour = jo.getBoolean("success");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                delegate.WSRequestIsTerminated(wsRetour);
             }
         };
         ws.execute(request);
 
     }
 }
-
 
 
 

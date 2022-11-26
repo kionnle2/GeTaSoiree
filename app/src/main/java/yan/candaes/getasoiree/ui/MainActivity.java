@@ -20,21 +20,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ((Button) findViewById(R.id.mainBtnLogin)).setOnClickListener(view ->{
+/*TODO back button override*/
+        ((Button) findViewById(R.id.mainBtnLogin)).setOnClickListener(view -> {
 
             String request = ("requete=connexion" +
-                    "&login="+ ((TextView) findViewById(R.id.mainTxtLogin)).getText().toString()+
-                    "&password="+ ((TextView) findViewById(R.id.mainTxtPass)).getText().toString());
+                    "&login=" + ((TextView) findViewById(R.id.mainTxtLogin)).getText().toString() +
+                    "&password=" + ((TextView) findViewById(R.id.mainTxtPass)).getText().toString());
 
             DaoParticipant.getInstance().ConnexionAccount(request, new Delegate() {
                 @Override
                 public void WSRequestIsTerminated(Object result) {
                     // result boolean, reussi ou non
-                    if ((boolean)result) {
-                        Toast.makeText(getApplicationContext(), " réussie", Toast.LENGTH_SHORT).show();
+                    if ((boolean) result)
                         goToSoireeActivity();
-                    } else
+                    else
                         Toast.makeText(getApplicationContext(), "connexion échoué", Toast.LENGTH_SHORT).show();
                 }
 
