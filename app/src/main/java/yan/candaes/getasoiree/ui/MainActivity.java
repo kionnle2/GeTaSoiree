@@ -20,14 +20,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*TODO back button override*/
+
         ((Button) findViewById(R.id.mainBtnLogin)).setOnClickListener(view -> {
 
             String request = ("requete=connexion" +
                     "&login=" + ((TextView) findViewById(R.id.mainTxtLogin)).getText().toString() +
                     "&password=" + ((TextView) findViewById(R.id.mainTxtPass)).getText().toString());
 
-            DaoParticipant.getInstance().ConnexionAccount(request, new Delegate() {
+            DaoParticipant.getInstance().simpleRequest(request, new Delegate() {
                 @Override
                 public void WSRequestIsTerminated(Object result) {
                     // result boolean, reussi ou non
@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         );
 
     }
+
+
 
     private void goToSoireeActivity() {
         Intent intent = new Intent(this, SoireeActivity.class);

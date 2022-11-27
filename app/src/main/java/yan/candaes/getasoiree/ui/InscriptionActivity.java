@@ -32,7 +32,7 @@ public class InscriptionActivity extends AppCompatActivity {
                         "&mail=" + ((TextView) findViewById(R.id.insTxtMail)).getText().toString() +
                         "&password=" + ((TextView) findViewById(R.id.insTxtPass1)).getText().toString()
                 );
-                DaoParticipant.getInstance().createAccount(request, new Delegate() {
+                DaoParticipant.getInstance().simpleRequest(request, new Delegate() {
                     @Override
                     public void WSRequestIsTerminated(Object result) {
                         if ((boolean) result) {

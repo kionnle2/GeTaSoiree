@@ -46,44 +46,6 @@ public class DaoParticipant {
         soirees = new ArrayList<>();
     }
 
-    public void createAccount(String request, Delegate delegate) {
-        WSConnexionHTTPS ws = new WSConnexionHTTPS() {
-            @Override
-            public void onPostExecute(String s) {
-                boolean wsRetour = false;
-                try {
-                    JSONObject jo = new JSONObject(s);
-                    wsRetour = jo.getBoolean("success");
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                delegate.WSRequestIsTerminated(wsRetour);
-            }
-        };
-        ws.execute(request);
-    }
-
-
-    public void ConnexionAccount(String request, Delegate delegate) {
-        WSConnexionHTTPS ws = new WSConnexionHTTPS() {
-            @Override
-            public void onPostExecute(String s) {
-                boolean wsRetour = false;
-                try {
-                    JSONObject jo = new JSONObject(s);
-                    wsRetour = jo.getBoolean("success");
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                delegate.WSRequestIsTerminated(wsRetour);
-            }
-        };
-        ws.execute(request);
-
-    }
-
     public void getSoiree(String request, Delegate delegate) {
 
         WSConnexionHTTPS ws = new WSConnexionHTTPS() {
@@ -122,6 +84,26 @@ public class DaoParticipant {
                     }
                     jo = new JSONObject(s);
                     wsRetour = jo.getBoolean("success");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                delegate.WSRequestIsTerminated(wsRetour);
+            }
+        };
+        ws.execute(request);
+
+    }
+
+
+    public void simpleRequest(String request, Delegate delegate) {
+        WSConnexionHTTPS ws = new WSConnexionHTTPS() {
+            @Override
+            public void onPostExecute(String s) {
+                boolean wsRetour = false;
+                try {
+                    JSONObject jo = new JSONObject(s);
+                    wsRetour = jo.getBoolean("success");
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
