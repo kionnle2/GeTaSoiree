@@ -28,10 +28,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/soirBtnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Ajouter ma soirée"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -41,7 +41,7 @@
         android:layout_width="409dp"
         android:layout_height="548dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/soirBtnAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

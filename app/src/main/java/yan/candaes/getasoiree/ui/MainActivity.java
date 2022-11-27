@@ -31,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void WSRequestIsTerminated(Object result) {
                     // result boolean, reussi ou non
-                    if ((boolean) result)
+                    if ((boolean) result){
                         goToSoireeActivity();
+                   /* DaoParticipant.getInstance().*/}
                     else
                         Toast.makeText(getApplicationContext(), "connexion échoué", Toast.LENGTH_SHORT).show();
                 }

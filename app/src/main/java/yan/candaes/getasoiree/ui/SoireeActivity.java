@@ -2,11 +2,13 @@ package yan.candaes.getasoiree.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import yan.candaes.getasoiree.AjoutSoireeActivity;
 import yan.candaes.getasoiree.R;
 import yan.candaes.getasoiree.beans.Participant;
 import yan.candaes.getasoiree.daos.DaoParticipant;
@@ -33,6 +35,10 @@ public class SoireeActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.soirBtnRetour).setOnClickListener(view -> deconnexion());
+        findViewById(R.id.soirBtnAdd).setOnClickListener(view -> {
+            Intent intent = new Intent(this, AjoutSoireeActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
