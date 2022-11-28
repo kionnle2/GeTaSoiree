@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import yan.candaes.getasoiree.AjoutSoireeActivity;
 import yan.candaes.getasoiree.R;
 import yan.candaes.getasoiree.beans.Participant;
 import yan.candaes.getasoiree.daos.DaoParticipant;

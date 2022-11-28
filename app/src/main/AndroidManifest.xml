@@ -16,7 +16,7 @@
         android:theme="@style/Theme.GeTaSoiree"
         tools:targetApi="31">
         <activity
-            android:name=".AjoutSoireeActivity"
+            android:name=".ui.AjoutSoireeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
