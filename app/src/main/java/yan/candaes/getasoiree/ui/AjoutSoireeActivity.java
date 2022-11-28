@@ -42,7 +42,6 @@ public class AjoutSoireeActivity extends AppCompatActivity {
         );
 
         ((Button) findViewById(R.id.addSoirBtnAdd)).setOnClickListener(view -> {
-            /*:TODO prendre les bonne valeur,+ coord*/
             String request = ("requete=addSoiree" +
                     "&libelleCourt=" + ((TextView) findViewById(R.id.addSoirTxtLib)).getText().toString() +
                     "&descriptif=" + ((TextView) findViewById(R.id.addSoirTxtDesc)).getText().toString() +

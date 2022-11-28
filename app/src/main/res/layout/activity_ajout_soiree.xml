@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AjoutSoireeActivity">
+    tools:context=".ui.AjoutSoireeActivity">
 
     <Button
         android:id="@+id/addSoirBtnRetour"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="libelle"
-        android:inputType="textPersonName"
+        android:inputType="textShortMessage|textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,10 +40,10 @@
         android:id="@+id/addSoirTxtDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="desc"
-        android:inputType="textPersonName"
+        android:inputType="textShortMessage|textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addSoirTxtLib" />
@@ -52,10 +52,10 @@
         android:id="@+id/addSoirTxtDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="date"
-        android:inputType="textPersonName"
+        android:hint="date YYYY-MM-JJ"
+        android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addSoirTxtDesc" />
@@ -64,10 +64,10 @@
         android:id="@+id/addSoirTxtHeure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="heure"
-        android:inputType="textPersonName"
+        android:hint="heure HH:MM:SS"
+        android:inputType="time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addSoirTxtDate" />
@@ -81,6 +81,65 @@
         android:hint="adresse"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addSoirTxtHeure" />
+
+    <Switch
+        android:id="@+id/addSoirSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:checked="false"
+        android:textOff="coordonées"
+        android:textOn="adresse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addSoirTxtAdr" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adresse"
+        app:layout_constraintBottom_toBottomOf="@+id/addSoirSwitch"
+        app:layout_constraintEnd_toStartOf="@+id/addSoirSwitch"
+        app:layout_constraintTop_toTopOf="@+id/addSoirSwitch" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coordonées"
+        app:layout_constraintBottom_toBottomOf="@+id/addSoirSwitch"
+        app:layout_constraintStart_toEndOf="@+id/addSoirSwitch"
+        app:layout_constraintTop_toTopOf="@+id/addSoirSwitch" />
+
+    <EditText
+        android:id="@+id/addSoirLon"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="108dp"
+        android:ems="10"
+        android:hint="longitude"
+        android:inputType="numberDecimal"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/addSoirLat"
+        app:layout_constraintEnd_toEndOf="@+id/addSoirTxtAdr"
+        app:layout_constraintTop_toTopOf="@+id/addSoirLat"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/addSoirLat"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="latitude"
+        android:inputType="numberDecimal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.694"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addSoirTxtHeure" />
 
