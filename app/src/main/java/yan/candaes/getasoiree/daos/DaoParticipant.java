@@ -29,7 +29,7 @@ public class DaoParticipant {
         }
         return instance;
     }
-/*TODO voir l'implementation*/
+
     public Participant getLogParticipant() {
         return logParticipant;
     }

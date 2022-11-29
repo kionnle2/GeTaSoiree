@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                     "&login=" + ((TextView) findViewById(R.id.mainTxtLogin)).getText().toString() +
                     "&password=" + ((TextView) findViewById(R.id.mainTxtPass)).getText().toString());
 
-            DaoParticipant.getInstance().simpleRequest(request, new Delegate() {
+            DaoParticipant.getInstance().connexionAccount(request, new Delegate() {
                 @Override
                 public void WSRequestIsTerminated(Object result) {
                     // result boolean, reussi ou non

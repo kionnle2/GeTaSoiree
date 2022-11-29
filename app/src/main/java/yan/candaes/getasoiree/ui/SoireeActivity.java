@@ -1,9 +1,11 @@
 package yan.candaes.getasoiree.ui;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -25,13 +27,14 @@ public class SoireeActivity extends AppCompatActivity {
 
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, DaoParticipant.getInstance().getLocalSoirees());
         ((ListView) (findViewById(R.id.soirLV))).setAdapter(adapter);
-        String request = ("requete=getLesSoirees");
-        refreshList(request);
+
+        refreshList("requete=getLesSoirees");
 
         findViewById(R.id.soirBtnRetour).setOnClickListener(view -> deconnexion());
         findViewById(R.id.soirBtnAdd).setOnClickListener(view -> {
             Intent intent = new Intent(this, AjoutSoireeActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,1
+            );
         });
 
         ((Button) findViewById(R.id.soirBtnMap)).setOnClickListener(view -> {
@@ -42,10 +45,9 @@ public class SoireeActivity extends AppCompatActivity {
         ((ListView) findViewById(R.id.soirLV)).setOnItemClickListener((adapterView, view, i, l) -> {
             Intent intent = new Intent(this, InfoSoireeActivity.class);
             intent.putExtra("position",i);
-            startActivity(intent);
+            startActivityForResult(intent,1);
         });
     }
-/*TODO onActivityResult pour update la list des soiré aprés en ajouté une */
     private void refreshList(String request) {
         DaoParticipant.getInstance().getLesSoirees(request, new Delegate() {
             @Override
@@ -73,5 +75,12 @@ public class SoireeActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        refreshList("requete=getLesSoirees");
+
     }
 }

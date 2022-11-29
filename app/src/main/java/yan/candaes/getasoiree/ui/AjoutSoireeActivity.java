@@ -57,6 +57,7 @@ public class AjoutSoireeActivity extends AppCompatActivity {
                 public void WSRequestIsTerminated(Object result) {
                     if ((boolean) result) {
                         Toast.makeText(getApplicationContext(), "ajout réussie", Toast.LENGTH_SHORT).show();
+                        setResult(1);
                         finish();
 
                     } else
