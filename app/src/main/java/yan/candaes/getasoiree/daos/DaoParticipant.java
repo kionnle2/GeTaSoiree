@@ -86,12 +86,10 @@ public class DaoParticipant {
                 try {
                     jo = new JSONObject(s);
                     ja = jo.getJSONArray("response");
-                    Log.d("GETGETGET", ja.toString(4));
                     //  soirees =  mapper.readValue(ja.toString(),  new TypeReference<List<Soiree>>(){});
                     //  soirees =  mapper.readValue(ja.toString(), List<Soiree>.class);
                     soirees.clear();
                     for (int i = 0; i < ja.length(); i++) {
-                        Log.d("GETGETGET", String.valueOf(ja.getJSONObject(i)));
                         //soirees.add(mapper.readValue((DataInput) ja.getJSONObject(i), Soiree.class));
                         jo = ja.getJSONObject(i);
 

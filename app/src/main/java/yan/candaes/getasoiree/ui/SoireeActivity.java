@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -14,16 +15,36 @@ import yan.candaes.getasoiree.daos.DaoParticipant;
 import yan.candaes.getasoiree.daos.Delegate;
 
 public class SoireeActivity extends AppCompatActivity {
+    ArrayAdapter<Participant> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soiree);
 
-        ArrayAdapter<Participant> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, DaoParticipant.getInstance().getLocalSoirees());
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, DaoParticipant.getInstance().getLocalSoirees());
         ((ListView) (findViewById(R.id.soirLV))).setAdapter(adapter);
         String request = ("requete=getLesSoirees");
 
+        refreshList(request);
+
+        findViewById(R.id.soirBtnRetour).setOnClickListener(view -> deconnexion());
+        findViewById(R.id.soirBtnAdd).setOnClickListener(view -> {
+            Intent intent = new Intent(this, AjoutSoireeActivity.class);
+            startActivity(intent);
+        });
+
+        ((Button) findViewById(R.id.soirBtnMap)).setOnClickListener(view -> {
+                    Intent intent = new Intent(this, CartesSoireesActivity.class);
+                    startActivity(intent);
+                }
+        );
+        ((ListView) findViewById(R.id.soirLV)).setOnItemClickListener((adapterView, view, i, l) -> {
+
+        });
+    }
+
+    private void refreshList(String request) {
         DaoParticipant.getInstance().getSoiree(request, new Delegate() {
             @Override
             public void WSRequestIsTerminated(Object result) {
@@ -31,12 +52,6 @@ public class SoireeActivity extends AppCompatActivity {
                 else
                     Toast.makeText(getApplicationContext(), "récuperation des soirées échoué", Toast.LENGTH_LONG).show();
             }
-        });
-
-        findViewById(R.id.soirBtnRetour).setOnClickListener(view -> deconnexion());
-        findViewById(R.id.soirBtnAdd).setOnClickListener(view -> {
-            Intent intent = new Intent(this, AjoutSoireeActivity.class);
-            startActivity(intent);
         });
     }
 
