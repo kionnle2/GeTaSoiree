@@ -29,7 +29,7 @@ public class DaoParticipant {
         }
         return instance;
     }
-
+/*TODO voir l'implementation*/
     public Participant getLogParticipant() {
         return logParticipant;
     }
@@ -170,5 +170,12 @@ public class DaoParticipant {
         };
         ws.execute(request);
 
+    }
+
+    public boolean isInscrit() {
+        for(Participant p : participants){
+            if (logParticipant.getLogin().equalsIgnoreCase(p.getLogin()))return true;
+        }
+        return false;
     }
 }

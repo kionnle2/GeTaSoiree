@@ -19,22 +19,6 @@ public class Participant {
         return login;
     }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public String getDdn() {
-        return ddn;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
     @Override
     public String toString() {
         return login + "(" + nom + " " + prenom + ')';
