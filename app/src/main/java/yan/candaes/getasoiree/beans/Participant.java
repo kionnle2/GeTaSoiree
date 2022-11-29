@@ -35,4 +35,8 @@ public class Participant {
         return mail;
     }
 
+    @Override
+    public String toString() {
+        return login + "(" + nom + " " + prenom + ')';
+    }
 }

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import yan.candaes.getasoiree.InfoSoireeActivity;
 import yan.candaes.getasoiree.R;
 import yan.candaes.getasoiree.beans.Participant;
 import yan.candaes.getasoiree.daos.DaoParticipant;
@@ -25,7 +26,6 @@ public class SoireeActivity extends AppCompatActivity {
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, DaoParticipant.getInstance().getLocalSoirees());
         ((ListView) (findViewById(R.id.soirLV))).setAdapter(adapter);
         String request = ("requete=getLesSoirees");
-
         refreshList(request);
 
         findViewById(R.id.soirBtnRetour).setOnClickListener(view -> deconnexion());
@@ -40,12 +40,14 @@ public class SoireeActivity extends AppCompatActivity {
                 }
         );
         ((ListView) findViewById(R.id.soirLV)).setOnItemClickListener((adapterView, view, i, l) -> {
-
+            Intent intent = new Intent(this, InfoSoireeActivity.class);
+            intent.putExtra("position",i);
+            startActivity(intent);
         });
     }
-
+/*TODO onActivityResult pour update la list des soiré aprés en ajouté une */
     private void refreshList(String request) {
-        DaoParticipant.getInstance().getSoiree(request, new Delegate() {
+        DaoParticipant.getInstance().getLesSoirees(request, new Delegate() {
             @Override
             public void WSRequestIsTerminated(Object result) {
                 if ((boolean) result) adapter.notifyDataSetChanged();

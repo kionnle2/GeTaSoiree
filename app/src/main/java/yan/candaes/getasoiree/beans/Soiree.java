@@ -1,6 +1,6 @@
 package yan.candaes.getasoiree.beans;
 
-public class Soiree {
+public class Soiree{
     private String id;
     private String libelleCourt;
     private String descriptif;
@@ -10,6 +10,42 @@ public class Soiree {
     private String latitude;
     private String longitude;
     private String login;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getLibelleCourt() {
+        return libelleCourt;
+    }
+
+    public String getDescriptif() {
+        return descriptif;
+    }
+
+    public String getDateDebut() {
+        return dateDebut;
+    }
+
+    public String getHeureDebut() {
+        return heureDebut;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public String getLogin() {
+        return login;
+    }
 
     public Soiree(String id, String libelleCourt, String descriptif, String dateDebut, String heureDebut, String adresse, String latitude, String longitude, String login) {
         this.id = id;
