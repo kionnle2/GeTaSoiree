@@ -36,19 +36,22 @@ public class SoireeActivity extends AppCompatActivity {
             startActivityForResult(intent, 1
             );
         });
+        ((Button) findViewById(R.id.soirBtnDel)).setOnClickListener(v ->
+                Toast.makeText(getApplicationContext(), "Appuye long pour suprimmer son compte", Toast.LENGTH_LONG).show());
         ((Button) findViewById(R.id.soirBtnDel)).setOnLongClickListener(v ->
         {
             DaoParticipant.getInstance().simpleRequest("requete=supprimerCompte", new Delegate() {
                 @Override
                 public void WSRequestIsTerminated(Object result) {
                     if ((boolean) result) {
-
-                        finishActivity(2);
+                        Intent returnIntent = new Intent();
+                        setResult(MainActivity.RESULT_OK, returnIntent);
+                        finish();
                     } else
                         Toast.makeText(getApplicationContext(), "suppréssion du compte échoué", Toast.LENGTH_LONG).show();
                 }
             });
-            return false;
+            return true;
         });
         ((Button) findViewById(R.id.soirBtnMap)).setOnClickListener(view -> {
                     Intent intent = new Intent(this, CartesSoireesActivity.class);

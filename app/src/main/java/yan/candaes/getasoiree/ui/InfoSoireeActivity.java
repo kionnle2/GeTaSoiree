@@ -80,6 +80,10 @@ public class InfoSoireeActivity extends AppCompatActivity {
         }
         ((Button) findViewById(R.id.infoBtnInscription)).setText(BTNNAME);
 
+//        findViewById(R.id.infoBtnInscription).setOnTouchListener((v, event) ->
+//                );
+        findViewById(R.id.infoBtnInscription).setOnClickListener(view ->
+                Toast.makeText(getApplicationContext(), "  appuye long pour supprimer", Toast.LENGTH_SHORT).show());
 
         findViewById(R.id.infoBtnInscription).setOnLongClickListener(view -> {
             if (ETAT == 0) {

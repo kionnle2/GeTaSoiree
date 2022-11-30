@@ -2,6 +2,7 @@ package yan.candaes.getasoiree.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,9 @@ import yan.candaes.getasoiree.daos.DaoParticipant;
 import yan.candaes.getasoiree.daos.Delegate;
 
 public class MainActivity extends AppCompatActivity {
+    public static final int RESULT_OK = 1;
+    public final int LAUNCH_SECOND_ACTIVITY = 1;
+    public final int LAUNCH_INSC_ACTIVITY = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         ((Button) findViewById(R.id.mainBtnInscrire)).setOnClickListener(view ->
                 {
                     Intent intent = new Intent(this, InscriptionActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent, LAUNCH_INSC_ACTIVITY);
                 }
         );
 
@@ -53,15 +57,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToSoireeActivity() {
         Intent intent = new Intent(this, SoireeActivity.class);
-        startActivityForResult(intent, 2);
+        startActivityForResult(intent, LAUNCH_SECOND_ACTIVITY);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 2) {
-            ((TextView) findViewById(R.id.mainTxtLogin)).setText("");
-            ((TextView) findViewById(R.id.mainTxtPass)).setText("");
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == LAUNCH_SECOND_ACTIVITY) {
+                ((TextView) findViewById(R.id.mainTxtLogin)).setText("");
+                ((TextView) findViewById(R.id.mainTxtPass)).setText("");
+            } else if (requestCode == LAUNCH_INSC_ACTIVITY) {
+                ((TextView) findViewById(R.id.mainTxtLogin)).setText(data.getStringExtra("lo"));
+                ((TextView) findViewById(R.id.mainTxtPass)).setText(data.getStringExtra("md"));
+            }
         }
     }
 }

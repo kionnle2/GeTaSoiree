@@ -64,18 +64,6 @@
         app:layout_constraintTop_toBottomOf="@+id/insTxtNom" />
 
     <EditText
-        android:id="@+id/insTxtDdn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Date de naissance"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/insTxtPrenom" />
-
-    <EditText
         android:id="@+id/insTxtMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,6 +72,7 @@
         android:hint="\@mail"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/insTxtDdn" />
 
@@ -131,5 +120,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/insTxtPass1" />
+
+    <TextView
+        android:id="@+id/insTxtDdn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Date de naissance"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insTxtPrenom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
