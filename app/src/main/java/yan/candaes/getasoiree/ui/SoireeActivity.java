@@ -41,8 +41,10 @@ public class SoireeActivity extends AppCompatActivity {
             DaoParticipant.getInstance().simpleRequest("requete=supprimerCompte", new Delegate() {
                 @Override
                 public void WSRequestIsTerminated(Object result) {
-                    if ((boolean) result) adapter.notifyDataSetChanged();
-                    else
+                    if ((boolean) result) {
+
+                        finishActivity(2);
+                    } else
                         Toast.makeText(getApplicationContext(), "suppréssion du compte échoué", Toast.LENGTH_LONG).show();
                 }
             });

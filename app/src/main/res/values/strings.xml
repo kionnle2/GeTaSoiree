@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Candaes Yan Soiree</string>
+    <string name="desc">desc</string>
+    <string name="adresse">adresse</string>
+    <string name="Adresse">Adresse</string>
+    <string name="coordon_es">Coordonées</string>
+    <string name="libelle">libelle</string>
+    <string name="longitude">longitude</string>
+    <string name="latitude">latitude</string>
+    <string name="preciser_la_date">Preciser la date</string>
+    <string name="preciser_l_heure">Preciser l\'heure</string>
+    <string name="retour">Retour</string>
+    <string name="ajouter_cette_soir_e">Ajouter cette soirée</string>
+    <string name="Coordon_es">Coordonées</string>
+    <string name="adressetxt">Adresse</string>
 </resources>

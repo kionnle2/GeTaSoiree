@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -26,6 +28,8 @@ import yan.candaes.getasoiree.daos.Delegate;
 public class AjoutSoireeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     TextView dP;
     TextView hP;
+    SimpleDateFormat dateLong = new SimpleDateFormat("EEEE dd MMMM yyyy");
+    SimpleDateFormat dateEn = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,7 @@ public class AjoutSoireeActivity extends AppCompatActivity implements DatePicker
 
             }
         });
-        hP = ((TextView) findViewById(R.id.addSoirheure));
+        hP = ((TextView) findViewById(R.id.addSoirHeure));
         hP.setOnClickListener(new View.OnClickListener() {
 
 
@@ -86,13 +90,20 @@ public class AjoutSoireeActivity extends AppCompatActivity implements DatePicker
                     }
                 }
         );
-        SimpleDateFormat dateEn = new SimpleDateFormat("yyyy-MM-dd");
         ((Button) findViewById(R.id.addSoirBtnAdd)).setOnClickListener(view -> {
-            String request = ("requete=addSoiree" +
+
+            String request = null;
+            request = ("requete=addSoiree" +
                     "&libelleCourt=" + ((TextView) findViewById(R.id.addSoirTxtLib)).getText().toString() +
                     "&descriptif=" + ((TextView) findViewById(R.id.addSoirTxtDesc)).getText().toString() +
-                    "&dateDebut=" +dateEn.format((((TextView) findViewById(R.id.addSoirTxtDate)).getText().toString())) +
-                    "&heureDebut=" + ((TextView) findViewById(R.id.addSoirTxtHeure)).getText().toString());
+                    "&heureDebut=" + ((TextView) findViewById(R.id.addSoirHeure)).getText().toString());
+            try {
+                String dateStr = ((TextView) findViewById(R.id.addSoirDate)).getText().toString();
+                dateStr = dateEn.format(dateLong.parse(dateStr));
+                request += "&dateDebut=" + dateStr;
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             if (sw.isChecked())
                 request += "&latitude=" + ((TextView) findViewById(R.id.addSoirLat)).getText().toString() +
                         "&longitude=" + ((TextView) findViewById(R.id.addSoirLon)).getText().toString();
@@ -125,6 +136,8 @@ public class AjoutSoireeActivity extends AppCompatActivity implements DatePicker
         mCalendar.set(Calendar.MONTH, month);
         mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
+        Log.d("TAGTAG", DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime()));
+        Log.d("TAGTAG", DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime().getTime()));
         dP.setText(selectedDate);
     }
 
