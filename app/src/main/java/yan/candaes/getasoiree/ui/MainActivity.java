@@ -1,17 +1,15 @@
 package yan.candaes.getasoiree.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import yan.candaes.getasoiree.R;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
+import yan.candaes.getasoiree.R;
 import yan.candaes.getasoiree.daos.DaoParticipant;
 import yan.candaes.getasoiree.daos.Delegate;
 
@@ -32,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void WSRequestIsTerminated(Object result) {
                     // result boolean, reussi ou non
-                    if ((boolean) result){
+                    if ((boolean) result) {
                         goToSoireeActivity();
-                   /* DaoParticipant.getInstance().*/}
-                    else
+                        /* DaoParticipant.getInstance().*/
+                    } else
                         Toast.makeText(getApplicationContext(), "connexion échoué", Toast.LENGTH_SHORT).show();
                 }
 
@@ -53,11 +51,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void goToSoireeActivity() {
         Intent intent = new Intent(this, SoireeActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 2);
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 2) {
+            ((TextView) findViewById(R.id.mainTxtLogin)).setText("");
+            ((TextView) findViewById(R.id.mainTxtPass)).setText("");
+        }
+    }
 }

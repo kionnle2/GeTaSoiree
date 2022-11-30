@@ -1,17 +1,16 @@
 package yan.candaes.getasoiree.ui;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import yan.candaes.getasoiree.InfoSoireeActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import yan.candaes.getasoiree.R;
 import yan.candaes.getasoiree.beans.Participant;
 import yan.candaes.getasoiree.daos.DaoParticipant;
@@ -25,6 +24,7 @@ public class SoireeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soiree);
 
+        findViewById(R.id.soirBtnDel).setBackgroundColor(Color.parseColor("#b70000"));
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, DaoParticipant.getInstance().getLocalSoirees());
         ((ListView) (findViewById(R.id.soirLV))).setAdapter(adapter);
 
@@ -33,10 +33,21 @@ public class SoireeActivity extends AppCompatActivity {
         findViewById(R.id.soirBtnRetour).setOnClickListener(view -> deconnexion());
         findViewById(R.id.soirBtnAdd).setOnClickListener(view -> {
             Intent intent = new Intent(this, AjoutSoireeActivity.class);
-            startActivityForResult(intent,1
+            startActivityForResult(intent, 1
             );
         });
-
+        ((Button) findViewById(R.id.soirBtnDel)).setOnLongClickListener(v ->
+        {
+            DaoParticipant.getInstance().simpleRequest("requete=supprimerCompte", new Delegate() {
+                @Override
+                public void WSRequestIsTerminated(Object result) {
+                    if ((boolean) result) adapter.notifyDataSetChanged();
+                    else
+                        Toast.makeText(getApplicationContext(), "suppréssion du compte échoué", Toast.LENGTH_LONG).show();
+                }
+            });
+            return false;
+        });
         ((Button) findViewById(R.id.soirBtnMap)).setOnClickListener(view -> {
                     Intent intent = new Intent(this, CartesSoireesActivity.class);
                     startActivity(intent);
@@ -44,10 +55,11 @@ public class SoireeActivity extends AppCompatActivity {
         );
         ((ListView) findViewById(R.id.soirLV)).setOnItemClickListener((adapterView, view, i, l) -> {
             Intent intent = new Intent(this, InfoSoireeActivity.class);
-            intent.putExtra("position",i);
-            startActivityForResult(intent,1);
+            intent.putExtra("position", i);
+            startActivityForResult(intent, 1);
         });
     }
+
     private void refreshList(String request) {
         DaoParticipant.getInstance().getLesSoirees(request, new Delegate() {
             @Override

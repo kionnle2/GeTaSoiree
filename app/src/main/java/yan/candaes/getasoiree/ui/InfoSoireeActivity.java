@@ -1,4 +1,4 @@
-package yan.candaes.getasoiree;
+package yan.candaes.getasoiree.ui;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import yan.candaes.getasoiree.R;
 import yan.candaes.getasoiree.beans.Participant;
 import yan.candaes.getasoiree.beans.Soiree;
 import yan.candaes.getasoiree.daos.DaoParticipant;

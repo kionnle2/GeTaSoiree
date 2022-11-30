@@ -52,37 +52,36 @@
         android:id="@+id/addSoirTxtDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="date YYYY-MM-JJ"
         android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/addSoirTxtHeure"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addSoirTxtDesc" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/addSoirTxtHeure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="heure HH:MM:SS"
         android:inputType="time"
+        app:layout_constraintBottom_toTopOf="@+id/addSoirBtnAdd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addSoirTxtDate" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/addSoirTxtAdr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="adresse"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addSoirTxtHeure" />
+        app:layout_constraintTop_toBottomOf="@+id/addSoirheure" />
 
     <Switch
         android:id="@+id/addSoirSwitch"
@@ -133,14 +132,38 @@
         android:id="@+id/addSoirLat"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="latitude"
         android:inputType="numberDecimal"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/addSoirTxtAdr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.694"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addSoirTxtHeure" />
+        app:layout_constraintTop_toTopOf="@+id/addSoirTxtAdr" />
+
+    <TextView
+        android:id="@+id/addSoirheure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="addSoirHeure"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addSoirDate" />
+
+    <TextView
+        android:id="@+id/addSoirDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="addSoirDate"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addSoirTxtDesc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
