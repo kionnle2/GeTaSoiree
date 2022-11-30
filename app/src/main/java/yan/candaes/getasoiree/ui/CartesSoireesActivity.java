@@ -16,11 +16,15 @@ import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
+import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.OverlayItem;
 
 import java.util.ArrayList;
 
 import yan.candaes.getasoiree.R;
+import yan.candaes.getasoiree.beans.Soiree;
+import yan.candaes.getasoiree.daos.DaoParticipant;
 
 public class CartesSoireesActivity extends AppCompatActivity{
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
@@ -38,20 +42,20 @@ public class CartesSoireesActivity extends AppCompatActivity{
         tabPerm[0] = Manifest.permission.WRITE_EXTERNAL_STORAGE;
         ((Button)findViewById(R.id.mapBtnBack)).setOnClickListener(view -> finish());
         requestPermissionsIfNecessary(tabPerm);
-//        positionnerEtudiants();
+        positionnerSoirees();
         positionnerSurCentre() ;
     }
 
     private void positionnerSurCentre() {
         IMapController mapController = map.getController();
-        mapController.setZoom(9.5);
+        mapController.setZoom(9);
         GeoPoint startPoint = new GeoPoint(45d, 3d);
         mapController.setCenter(startPoint);
     }
-/*    private void positionnerEtudiants() {
+ private void positionnerSoirees() {
         ArrayList<OverlayItem> items = new ArrayList<OverlayItem>();
-        for(Etudiant e : SQLiteStages.getInstance(this).getEtudiants()){
-            items.add(new OverlayItem(e.toString(), e.getNomEntreprise(), new GeoPoint(e.getLat(), e.getLng())));
+        for(Soiree s : DaoParticipant.getInstance().getLocalSoirees()){
+            items.add(new OverlayItem(s.getLibelleCourt(),s.getDescriptif(), new GeoPoint(s.getLatitude(), s.getLongitude())));
 
         }
 
@@ -69,13 +73,13 @@ public class CartesSoireesActivity extends AppCompatActivity{
                 }, this);
         mOverlay.setFocusItemsOnTap(true);
         map.getOverlays().add(mOverlay);
-    }*/
+    }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        map.onResume(); //needed for compass, my location overlays, v6.0.0 and up
+        map.onResume();
     }
 
     @Override
