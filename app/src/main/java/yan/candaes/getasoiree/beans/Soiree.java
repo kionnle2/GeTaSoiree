@@ -3,15 +3,15 @@ package yan.candaes.getasoiree.beans;
 import java.io.Serializable;
 
 public class Soiree implements Serializable {
-    private String id;
-    private String libelleCourt;
-    private String descriptif;
-    private String dateDebut;
-    private String heureDebut;
-    private String adresse;
-    private String latitude;
-    private String longitude;
-    private String login;
+    private final String id;
+    private final String libelleCourt;
+    private final String descriptif;
+    private final String dateDebut;
+    private final String heureDebut;
+    private final String adresse;
+    private final String latitude;
+    private final String longitude;
+    private final String login;
 
     public Soiree(String id, String libelleCourt, String descriptif, String dateDebut, String heureDebut, String adresse, String latitude, String longitude, String login) {
         this.id = id;

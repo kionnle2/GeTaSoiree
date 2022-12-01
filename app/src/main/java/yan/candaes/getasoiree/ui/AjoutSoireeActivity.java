@@ -21,9 +21,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import yan.candaes.getasoiree.R;
-import yan.candaes.getasoiree.fragment.DatePicker;
 import yan.candaes.getasoiree.daos.DaoParticipant;
 import yan.candaes.getasoiree.daos.Delegate;
+import yan.candaes.getasoiree.fragment.DatePicker;
 
 public class AjoutSoireeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     TextView dP;
@@ -76,9 +76,8 @@ public class AjoutSoireeActivity extends AppCompatActivity implements DatePicker
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                     }
-                    ;
 
-                    if (sw.isChecked()) {
+            if (sw.isChecked()) {
                         findViewById(R.id.addSoirTxtAdr).setVisibility(View.INVISIBLE);
                         findViewById(R.id.addSoirLon).setVisibility(View.VISIBLE);
                         findViewById(R.id.addSoirLat).setVisibility(View.VISIBLE);

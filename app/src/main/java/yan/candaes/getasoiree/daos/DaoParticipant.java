@@ -17,8 +17,8 @@ import yan.candaes.getasoiree.net.WSConnexionHTTPS;
 public class DaoParticipant {
 
     private static DaoParticipant instance = null;
-    private List<Soiree> soirees;
-    private List<Participant> participants;
+    private final List<Soiree> soirees;
+    private final List<Participant> participants;
     private final ObjectMapper mapper = new ObjectMapper();
     private Participant logParticipant;
 
@@ -99,8 +99,8 @@ public class DaoParticipant {
 
                     JSONObject jo = new JSONObject(s);
                     JSONArray ja = jo.getJSONArray("response");
-                    //  soirees =  mapper.readValue(ja.toString(),  new TypeReference<List<Soiree>>(){});
-                    //  soirees =  mapper.readValue(ja.toString(), List<Soiree>.class);
+         /*             soirees =  mapper.readValue(ja.toString(),  new TypeReference<List<Soiree>>(){});
+                      soirees =  mapper.readValue(ja.toString(), List<Soiree>.class);*/
                     soirees.clear();
                     for (int i = 0; i < ja.length(); i++) {
                         //soirees.add(mapper.readValue((DataInput) ja.getJSONObject(i), Soiree.class));
@@ -143,8 +143,8 @@ public class DaoParticipant {
 
                     JSONObject jo = new JSONObject(s);
                     JSONArray ja = jo.getJSONArray("response");
-                    //  participants =  mapper.readValue(ja.toString(),  new TypeReference<List<Participant>>(){});
-                    //  participants =  mapper.readValue(ja.toString(), List<Soiree>.class);
+                    /*  participants =  mapper.readValue(ja.toString(),  new TypeReference<List<Participant>>(){});
+                      participants =  mapper.readValue(ja.toString(), List<Soiree>.class);*/
                     participants.clear();
                     for (int i = 0; i < ja.length(); i++) {
                         //participants.add(mapper.readValue((DataInput) ja.getJSONObject(i), Participant.class));
