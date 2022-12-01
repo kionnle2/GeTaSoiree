@@ -26,7 +26,7 @@ import yan.candaes.getasoiree.R;
 import yan.candaes.getasoiree.beans.Soiree;
 import yan.candaes.getasoiree.daos.DaoParticipant;
 
-public class CartesSoireesActivity extends AppCompatActivity{
+public class CartesSoireesActivity extends AppCompatActivity {
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
     private MapView map = null;
 
@@ -40,10 +40,20 @@ public class CartesSoireesActivity extends AppCompatActivity{
         map.setTileSource(TileSourceFactory.MAPNIK);
         String[] tabPerm = new String[1];
         tabPerm[0] = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-        ((Button)findViewById(R.id.mapBtnBack)).setOnClickListener(view -> finish());
+        ((Button) findViewById(R.id.mapBtnBack)).setOnClickListener(view -> finish());
         requestPermissionsIfNecessary(tabPerm);
-        positionnerSoirees();
-        positionnerSurCentre() ;
+        Soiree s = (Soiree) getIntent().getSerializableExtra("soiree");
+        if (s != null) {
+            IMapController mapController = map.getController();
+            mapController.setZoom(12);
+            mapController.setCenter(new GeoPoint(s.getLatitude(), s.getLongitude()));
+
+            positionnerSoirees(s);
+
+        } else {
+            positionnerSoirees(null);
+            positionnerSurCentre();
+        }
     }
 
     private void positionnerSurCentre() {
@@ -52,25 +62,30 @@ public class CartesSoireesActivity extends AppCompatActivity{
         GeoPoint startPoint = new GeoPoint(45d, 3d);
         mapController.setCenter(startPoint);
     }
- private void positionnerSoirees() {
+
+    private void positionnerSoirees(Soiree soiree) {
         ArrayList<OverlayItem> items = new ArrayList<OverlayItem>();
-        for(Soiree s : DaoParticipant.getInstance().getLocalSoirees()){
-            items.add(new OverlayItem(s.getLibelleCourt(),s.getDescriptif(), new GeoPoint(s.getLatitude(), s.getLongitude())));
+        if (soiree == null) {
+            for (Soiree s : DaoParticipant.getInstance().getLocalSoirees()) {
+                items.add(new OverlayItem(s.getLibelleCourt(), s.getDescriptif(), new GeoPoint(s.getLatitude() + (Math.random() / 10000), s.getLongitude() + (Math.random() / 10000))));
+
+            }
+        } else {
+            items.add(new OverlayItem(soiree.getLibelleCourt(), soiree.getDescriptif(), new GeoPoint(soiree.getLatitude(), soiree.getLongitude())));
 
         }
 
-        ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(items,
-                new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
-                    @Override
-                    public boolean onItemSingleTapUp(final int index, final OverlayItem item) {
-                        return true;
-                    }
+        ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(items, new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
+            @Override
+            public boolean onItemSingleTapUp(final int index, final OverlayItem item) {
+                return true;
+            }
 
-                    @Override
-                    public boolean onItemLongPress(final int index, final OverlayItem item) {
-                        return false;
-                    }
-                }, this);
+            @Override
+            public boolean onItemLongPress(final int index, final OverlayItem item) {
+                return false;
+            }
+        }, this);
         mOverlay.setFocusItemsOnTap(true);
         map.getOverlays().add(mOverlay);
     }
@@ -96,26 +111,19 @@ public class CartesSoireesActivity extends AppCompatActivity{
             permissionsToRequest.add(permissions[i]);
         }
         if (permissionsToRequest.size() > 0) {
-            ActivityCompat.requestPermissions(
-                    this,
-                    permissionsToRequest.toArray(new String[0]),
-                    REQUEST_PERMISSIONS_REQUEST_CODE);
+            ActivityCompat.requestPermissions(this, permissionsToRequest.toArray(new String[0]), REQUEST_PERMISSIONS_REQUEST_CODE);
         }
     }
 
     private void requestPermissionsIfNecessary(String[] permissions) {
         ArrayList<String> permissionsToRequest = new ArrayList<>();
         for (String permission : permissions) {
-            if (ContextCompat.checkSelfPermission(this, permission)
-                    != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
                 permissionsToRequest.add(permission);
             }
         }
         if (permissionsToRequest.size() > 0) {
-            ActivityCompat.requestPermissions(
-                    this,
-                    permissionsToRequest.toArray(new String[0]),
-                    REQUEST_PERMISSIONS_REQUEST_CODE);
+            ActivityCompat.requestPermissions(this, permissionsToRequest.toArray(new String[0]), REQUEST_PERMISSIONS_REQUEST_CODE);
         }
     }
 }

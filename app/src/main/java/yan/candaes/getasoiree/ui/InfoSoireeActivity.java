@@ -1,5 +1,6 @@
 package yan.candaes.getasoiree.ui;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -38,8 +39,13 @@ public class InfoSoireeActivity extends AppCompatActivity {
         infoAdap = new ArrayAdapter(this, android.R.layout.simple_list_item_1, DaoParticipant.getInstance().getLocalParticipants());
         ((ListView) (findViewById(R.id.infoLvParticipant))).setAdapter(infoAdap);
         String request = ("requete=getLesParticipants&soiree=" + s.getId());
+        //get les participant + setup le "tri"btn
         refreshList(request, s);
-
+        findViewById(R.id.infoBtnMap).setOnClickListener(v -> {
+            Intent i = new Intent(this, CartesSoireesActivity.class);
+            i.putExtra("soiree", s);
+            startActivity(i);
+        });
         findViewById(R.id.infoBtnBack).setOnClickListener(View -> finish());
 
     }
@@ -55,7 +61,7 @@ public class InfoSoireeActivity extends AppCompatActivity {
                         if (p.getLogin().equalsIgnoreCase(s.getLogin()))
                             ((TextView) findViewById(R.id.infoLog)).setText("Soirée déposée  par " + p.getNom() + " " + p.getPrenom());
                     });
-
+//setup le "tri"btn dont ses listener
                     setupButton(s);
                 } else
                     Toast.makeText(getApplicationContext(), "la récuperation des particiants a échouée", Toast.LENGTH_LONG).show();
@@ -79,9 +85,6 @@ public class InfoSoireeActivity extends AppCompatActivity {
             BTNNAME = "S'inscrire";
         }
         ((Button) findViewById(R.id.infoBtnInscription)).setText(BTNNAME);
-
-//        findViewById(R.id.infoBtnInscription).setOnTouchListener((v, event) ->
-//                );
 
 
         findViewById(R.id.infoBtnInscription).setOnLongClickListener(view -> {
@@ -119,8 +122,7 @@ public class InfoSoireeActivity extends AppCompatActivity {
                     setResult(1);
                     finish();
                     Toast.makeText(getApplicationContext(), "Suppresion réusie", Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(getApplicationContext(), b, Toast.LENGTH_SHORT).show();
+                } else Toast.makeText(getApplicationContext(), b, Toast.LENGTH_SHORT).show();
             }
         });
     }
