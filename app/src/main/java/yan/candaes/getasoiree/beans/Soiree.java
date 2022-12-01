@@ -1,6 +1,8 @@
 package yan.candaes.getasoiree.beans;
 
-public class Soiree {
+import java.io.Serializable;
+
+public class Soiree implements Serializable {
     private String id;
     private String libelleCourt;
     private String descriptif;

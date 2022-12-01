@@ -2,9 +2,12 @@ package yan.candaes.getasoiree.ui;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,13 +50,21 @@ public class CartesSoireesActivity extends AppCompatActivity {
             IMapController mapController = map.getController();
             mapController.setZoom(12);
             mapController.setCenter(new GeoPoint(s.getLatitude(), s.getLongitude()));
-
+            findViewById(R.id.mapBtnNav).setVisibility(View.VISIBLE);
             positionnerSoirees(s);
 
         } else {
             positionnerSoirees(null);
             positionnerSurCentre();
+            findViewById(R.id.mapBtnNav).setVisibility(View.INVISIBLE);
         }
+        findViewById(R.id.mapBtnNav).setOnClickListener(v -> {
+
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=" + s.getLatitude() + "," + s.getLongitude() + "&mode=d"));
+            //mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
+        });
+
     }
 
     private void positionnerSurCentre() {
