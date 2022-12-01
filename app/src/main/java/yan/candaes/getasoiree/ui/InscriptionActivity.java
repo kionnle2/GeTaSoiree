@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,8 +34,8 @@ TextView dd;
 
             @Override
             public void onClick(View v) {
-                yan.candaes.getasoiree.beans.DatePicker mDatePickerDialogFragment;
-                mDatePickerDialogFragment = new yan.candaes.getasoiree.beans.DatePicker();
+                yan.candaes.getasoiree.fragment.DatePicker mDatePickerDialogFragment;
+                mDatePickerDialogFragment = new yan.candaes.getasoiree.fragment.DatePicker();
                 mDatePickerDialogFragment.show(getSupportFragmentManager(), "DATE PICK");
 
             }

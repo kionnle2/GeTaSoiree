@@ -1,4 +1,4 @@
-package yan.candaes.getasoiree.beans;
+package yan.candaes.getasoiree.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

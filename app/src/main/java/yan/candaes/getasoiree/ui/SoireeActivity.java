@@ -1,5 +1,6 @@
 package yan.candaes.getasoiree.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import yan.candaes.getasoiree.R;
@@ -40,19 +42,41 @@ public class SoireeActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Appuye long pour suprimmer son compte", Toast.LENGTH_LONG).show());
         ((Button) findViewById(R.id.soirBtnDel)).setOnLongClickListener(v ->
         {
-            DaoParticipant.getInstance().simpleRequest("requete=supprimerCompte", new Delegate() {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+            builder.setTitle(R.string.dialog_del_acount);
+            builder.setMessage(R.string.dialog_del_body);
+            builder.setCancelable(false);
+            builder.setPositiveButton(R.string.dialog_del_ok, new DialogInterface.OnClickListener() {
                 @Override
-                public void WSRequestIsTerminated(Object result) {
-                    if ((boolean) result) {
-                        Intent returnIntent = new Intent();
-                        setResult(MainActivity.RESULT_OK, returnIntent);
-                        finish();
-                    } else
-                        Toast.makeText(getApplicationContext(), "suppréssion du compte échoué", Toast.LENGTH_LONG).show();
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                    DaoParticipant.getInstance().simpleRequest("requete=supprimerCompte", new Delegate() {
+                        @Override
+                        public void WSRequestIsTerminated(Object result) {
+                            if ((boolean) result) {
+                                Intent returnIntent = new Intent();
+                                setResult(MainActivity.RESULT_OK, returnIntent);
+                                finish();
+                            } else
+                                Toast.makeText(getApplicationContext(), "suppréssion du compte échoué", Toast.LENGTH_LONG).show();
+                        }
+                    });
+
                 }
             });
+            builder.setNegativeButton(R.string.dialog_del_cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Toast.makeText(getApplicationContext(), R.string.dialog_del_afterCancel, Toast.LENGTH_SHORT).show();
+                    dialogInterface.dismiss();
+                }
+            });
+            builder.show();
             return true;
         });
+
+
         ((Button) findViewById(R.id.soirBtnMap)).setOnClickListener(view -> {
                     Intent intent = new Intent(this, CartesSoireesActivity.class);
                     startActivity(intent);

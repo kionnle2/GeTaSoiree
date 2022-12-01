@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import yan.candaes.getasoiree.R;
-import yan.candaes.getasoiree.beans.DatePicker;
+import yan.candaes.getasoiree.fragment.DatePicker;
 import yan.candaes.getasoiree.daos.DaoParticipant;
 import yan.candaes.getasoiree.daos.Delegate;
 

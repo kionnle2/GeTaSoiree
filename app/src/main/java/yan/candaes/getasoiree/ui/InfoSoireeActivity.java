@@ -82,8 +82,7 @@ public class InfoSoireeActivity extends AppCompatActivity {
 
 //        findViewById(R.id.infoBtnInscription).setOnTouchListener((v, event) ->
 //                );
-        findViewById(R.id.infoBtnInscription).setOnClickListener(view ->
-                Toast.makeText(getApplicationContext(), "  appuye long pour supprimer", Toast.LENGTH_SHORT).show());
+
 
         findViewById(R.id.infoBtnInscription).setOnLongClickListener(view -> {
             if (ETAT == 0) {
@@ -95,7 +94,9 @@ public class InfoSoireeActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.infoBtnInscription).setOnClickListener(view -> {
-            if (ETAT == 1) {
+            if (ETAT == 0) {
+                Toast.makeText(getApplicationContext(), "  appuye long pour supprimer", Toast.LENGTH_SHORT).show();
+            } else if (ETAT == 1) {
                 String req = ("requete=desinscrire&soiree=" + s.getId());
                 String b = "desinscription échouée";
                 sendRequet(req, b, ETAT, s);

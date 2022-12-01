@@ -13,4 +13,9 @@
     <string name="ajouter_cette_soir_e">Ajouter cette soirée</string>
     <string name="Coordon_es">Coordonées</string>
     <string name="adressetxt">Adresse</string>
+    <string name="dialog_del_acount">ATTENTION !!!</string>
+    <string name="dialog_del_ok">OK</string>
+    <string name="dialog_del_cancel">annuler</string>
+    <string name="dialog_del_body">Supprimer le compte est irréversible.</string>
+    <string name="dialog_del_afterCancel">Action annuler.</string>
 </resources>
