@@ -62,9 +62,10 @@
 
     <ListView
         android:id="@+id/infoLvParticipant"
-        android:layout_width="410dp"
-        android:layout_height="236dp"
+        android:layout_width="408dp"
+        android:layout_height="316dp"
         android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/infoBtnInscription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,9 +86,11 @@
         android:id="@+id/infoBtnInscription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -95,7 +98,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Retour"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/infoBtnInscription"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/infoBtnInscription" />
+        app:layout_constraintStart_toEndOf="@+id/infoBtnInscription"
+        app:layout_constraintTop_toTopOf="@+id/infoBtnInscription" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
