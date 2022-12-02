@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Deconnexion"
+        android:text="@string/deconnexion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
-        android:text="voir map"
+        android:text="@string/voir_map"
         app:layout_constraintBottom_toTopOf="@+id/soirBtnRetour"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -31,7 +31,7 @@
         android:id="@+id/soirBtnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ajouter ma soirée"
+        android:text="@string/ajouter_ma_soir_e"
         app:layout_constraintBottom_toTopOf="@+id/soirBtnMap"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -39,7 +39,7 @@
     <ListView
         android:id="@+id/soirLV"
         android:layout_width="409dp"
-        android:layout_height="472dp"
+        android:layout_height="490dp"
         app:layout_constraintBottom_toTopOf="@+id/soirBtnAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -48,12 +48,12 @@
 
     <Button
         android:id="@+id/soirBtnDel"
-        android:layout_width="123dp"
-        android:layout_height="45dp"
+        android:layout_width="92dp"
+        android:layout_height="50dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="12dp"
-        android:text="suppr compte"
-        android:textSize="10sp"
+        android:text="@string/suppr_compte"
+        android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +61,7 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Candaes Yan"
+        android:text="@string/candaes_yan"
         app:layout_constraintEnd_toStartOf="@+id/soirBtnDel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

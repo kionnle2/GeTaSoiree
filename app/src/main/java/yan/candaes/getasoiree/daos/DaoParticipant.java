@@ -23,6 +23,11 @@ public class DaoParticipant {
     private Participant logParticipant;
 
 
+    private DaoParticipant() {
+        soirees = new ArrayList<>();
+        participants = new ArrayList<>();
+    }
+
     public static DaoParticipant getInstance() {
         if (instance == null) {
             instance = new DaoParticipant();
@@ -42,22 +47,20 @@ public class DaoParticipant {
         return participants;
     }
 
-    private DaoParticipant() {
-        soirees = new ArrayList<>();
-        participants=new ArrayList<>();
-    }
     public void simpleRequest(String request, Delegate delegate) {
         WSConnexionHTTPS ws = new WSConnexionHTTPS() {
             @Override
             public void onPostExecute(String s) {
                 boolean wsRetour = false;
-                try {
-                    JSONObject jo = new JSONObject(s);
-                    wsRetour = jo.getBoolean("success");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                delegate.WSRequestIsTerminated(wsRetour);
+                if (s != null) {
+                    try {
+                        JSONObject jo = new JSONObject(s);
+                        wsRetour = jo.getBoolean("success");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }}
+                    delegate.WSRequestIsTerminated(wsRetour);
+
             }
         };
         ws.execute(request);
@@ -69,6 +72,7 @@ public class DaoParticipant {
             @Override
             public void onPostExecute(String s) {
                 boolean wsRetour = false;
+                if (s != null) {
                 try {
                     JSONObject jo = new JSONObject(s);
                     wsRetour = jo.getBoolean("success");
@@ -82,7 +86,7 @@ public class DaoParticipant {
                     );
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }}
                 delegate.WSRequestIsTerminated(wsRetour);
             }
         };
@@ -94,7 +98,7 @@ public class DaoParticipant {
             @Override
             public void onPostExecute(String s) {
                 boolean wsRetour = false;
-
+                if (s != null) {
                 try {
 
                     JSONObject jo = new JSONObject(s);
@@ -124,7 +128,7 @@ public class DaoParticipant {
                     wsRetour = jo.getBoolean("success");
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }}
                 delegate.WSRequestIsTerminated(wsRetour);
             }
         };
@@ -132,13 +136,12 @@ public class DaoParticipant {
     }
 
 
-
     public void getLesParticipants(String request, Delegate delegate) {
         WSConnexionHTTPS ws = new WSConnexionHTTPS() {
             @Override
             public void onPostExecute(String s) {
                 boolean wsRetour = false;
-
+                if (s != null) {
                 try {
 
                     JSONObject jo = new JSONObject(s);
@@ -164,7 +167,7 @@ public class DaoParticipant {
                     wsRetour = jo.getBoolean("success");
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }}
                 delegate.WSRequestIsTerminated(wsRetour);
             }
         };
@@ -173,8 +176,8 @@ public class DaoParticipant {
     }
 
     public boolean isInscrit() {
-        for(Participant p : participants){
-            if (logParticipant.getLogin().equalsIgnoreCase(p.getLogin()))return true;
+        for (Participant p : participants) {
+            if (logParticipant.getLogin().equalsIgnoreCase(p.getLogin())) return true;
         }
         return false;
     }

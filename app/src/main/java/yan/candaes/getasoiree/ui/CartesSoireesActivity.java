@@ -45,6 +45,7 @@ public class CartesSoireesActivity extends AppCompatActivity {
         tabPerm[0] = Manifest.permission.WRITE_EXTERNAL_STORAGE;
         ((Button) findViewById(R.id.mapBtnBack)).setOnClickListener(view -> finish());
         requestPermissionsIfNecessary(tabPerm);
+
         Soiree s = (Soiree) getIntent().getSerializableExtra("soiree");
         if (s != null) {
             IMapController mapController = map.getController();

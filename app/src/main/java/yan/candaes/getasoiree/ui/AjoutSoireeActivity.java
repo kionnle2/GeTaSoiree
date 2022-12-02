@@ -75,6 +75,7 @@ public class AjoutSoireeActivity extends AppCompatActivity implements DatePicker
                     if (((TextView) findViewById(R.id.addSoirTxtAdr)).isInputMethodTarget()) {
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
                     }
 
             if (sw.isChecked()) {
@@ -107,7 +108,7 @@ public class AjoutSoireeActivity extends AppCompatActivity implements DatePicker
                 request += "&latitude=" + ((TextView) findViewById(R.id.addSoirLat)).getText().toString() +
                         "&longitude=" + ((TextView) findViewById(R.id.addSoirLon)).getText().toString();
             else
-                request += "&adresse=" + ((TextView) findViewById(R.id.addSoirBtnAdd)).getText().toString();
+                request += "&adresse=" + ((TextView) findViewById(R.id.addSoirTxtAdr)).getText().toString();
             DaoParticipant.getInstance().simpleRequest(request, new Delegate() {
                 @Override
                 public void WSRequestIsTerminated(Object result) {

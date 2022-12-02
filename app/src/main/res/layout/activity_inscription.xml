@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Identification du membre"
+        android:text="@string/identification_du_membre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,11 +22,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="Login"
+        android:hint="@string/login"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inscriptionTV" />
+        app:layout_constraintTop_toBottomOf="@+id/inscriptionTV"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/insTxtNom"
@@ -34,19 +36,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Nom"
+        android:hint="@string/nom"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/insTxtPass2" />
+        app:layout_constraintTop_toBottomOf="@+id/insTxtPass2"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/insBtnValid"
         android:layout_width="110dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginTop="20dp"
-        android:text="Valider"
+        android:text="@string/valider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -57,11 +61,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Prénom"
+        android:hint="@string/pr_nom"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/insTxtNom" />
+        app:layout_constraintTop_toBottomOf="@+id/insTxtNom"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/insTxtMail"
@@ -71,10 +78,12 @@
         android:ems="10"
         android:hint="\@mail"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/insTxtDdn" />
+        app:layout_constraintTop_toBottomOf="@+id/insTxtDdn"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/textView"
@@ -105,6 +114,8 @@
         android:ems="10"
         android:hint="Mot de passe"
         android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/insTxtLogin" />
@@ -117,6 +128,8 @@
         android:ems="10"
         android:hint="Mot de passe identique"
         android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/insTxtPass1" />

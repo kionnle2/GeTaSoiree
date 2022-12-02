@@ -18,4 +18,14 @@
     <string name="dialog_del_cancel">annuler</string>
     <string name="dialog_del_body">Supprimer le compte est irréversible.</string>
     <string name="dialog_del_afterCancel">Action annuler.</string>
+    <string name="deconnexion">Deconnexion</string>
+    <string name="voir_map">voir map</string>
+    <string name="suppr_compte">suppr compte</string>
+    <string name="candaes_yan">Candaes Yan</string>
+    <string name="ajouter_ma_soir_e">Ajouter ma soirée</string>
+    <string name="identification_du_membre">Identification du membre</string>
+    <string name="login">Login</string>
+    <string name="pr_nom">Prénom</string>
+    <string name="nom">Nom</string>
+    <string name="valider">Valider</string>
 </resources>
